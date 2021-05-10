@@ -46,17 +46,35 @@
 
 <ul>
 
+<%@ page import = "java.util.*" %>
+
 <%
 
+List<String> ListaElementos = (List<String>) session.getAttribute("misElementos"); //hacemos un casting ya que el metodo getAttribute devuelve un Object y el array almacena Strings
+
+if (ListaElementos == null){ //Creamos un arreglo dinamico que almacenara los productos seleccionados
+	
+	ListaElementos = new ArrayList<String>(); //Inicializamos el arrayList, en el caso de que este vacio
+	
+	session.setAttribute("misElementos", ListaElementos);
+	
+}
 
 String [] elementos = request.getParameterValues("articulos");
 
 if (elementos != null) {
 	
-	for (String elemTem: elementos) {
+	for (String elemTem: elementos) {//Rellenamos el arrayList con los leccionados
 		
-		out.println("<li>" + elemTem + "</li>");
+	//	out.println("<li>" + elemTem + "</li>");
+	
+	ListaElementos.add(elemTem);
 		
+	}
+	
+	for (String i: ListaElementos){ //Recorremos el array para que imprima los resultados
+		
+		out.println("<li>" + i + "</li>");
 	}
 }
 
