@@ -50,17 +50,17 @@
 
 <%
 
-List<String> ListaElementos = (List<String>) session.getAttribute("misElementos"); //hacemos un casting ya que el metodo getAttribute devuelve un Object y el array almacena Strings
+List<String> ListaElementos = (List<String>) session.getAttribute("misElementos"); //hacemos un casting ya que el metodo getAttribute devuelve un Object y el array almacena Strings, guardara los elementos que hayan sido seleccionados en el carrito de compra
 
 if (ListaElementos == null){ //Creamos un arreglo dinamico que almacenara los productos seleccionados
 	
 	ListaElementos = new ArrayList<String>(); //Inicializamos el arrayList, en el caso de que este vacio
 	
-	session.setAttribute("misElementos", ListaElementos);
+	session.setAttribute("misElementos", ListaElementos);//Arguntos el cual el primero es el nombre de buestra sesion y el segubdo es el objeto de tipo Object, que en este caso seria el arrayList
 	
 }
 
-String [] elementos = request.getParameterValues("articulos");
+String [] elementos = request.getParameterValues("articulos");// Metodo que se detona a partir de que pulsan en boton enviar, al pulsar el boton enviar la pag se recarga por completo, por lo que vuelve a cargar el formulario
 
 if (elementos != null) {
 	
@@ -68,7 +68,7 @@ if (elementos != null) {
 		
 	//	out.println("<li>" + elemTem + "</li>");
 	
-	ListaElementos.add(elemTem);
+	ListaElementos.add(elemTem);//Agrega los elementos del array "elementos" y los agrega al arrayList<ListaElementos>
 		
 	}
 	
